@@ -1,32 +1,21 @@
-// Test file for game logic
-
-// get game yo
-//var game = require ('../src/app/game.js');
-
-// Tests:
-// 1. Any live cell with fewer than two neighbors dies
-// 2. Any live cell with two or three live neighbors lives on the the next generation
-// 3. Any live cell with more than three live neighbors dies
-// 4. Any dead cell with exactly three live neighbors becomes a live cell
-
 $(document).ready(function(){
-	module("Game Logic");
+	module("Cells");
 
 	test("Cell Death", function(){
-		ok(true, "This test is fine");
-		var value = "hello";
-		equal(value, "hello", "We expect value to be hello");
+		ok(true, "This cell is dead.");
+		Cell.Dead();		
+		equal(Cell.Status, "Dead", "We expect death to be true");
 	});
 
 	test("Cell Life", function(){
-		ok(true, "all pass");
+		ok(true, "This cell is alive.");
+		Cell.Alive();
+		equal(Cell.Status, "Alive", "We expect alive to be true");
 	});
 
-	module("Module B");
-
-	test("some other test", function(){
-		expect(2);
-		equal(true, false, "failing test");
-		equal(true, true, "passing test");
+	test("Cell location", function(){
+		Cell.SetLocation(10,20);
+		equal(10, Cell.X, "We expect X to be 10");
+		equal(20, Cell.Y, "We expect Y to be 20");
 	});
 });

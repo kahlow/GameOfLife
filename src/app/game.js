@@ -4,6 +4,6 @@ var User = Spine.Class.sub({
 					  }
 });
 
-var user = new User('Flynn');
-alert(user.name + ' lives!');
+//var user = new User('Flynn');
+//alert(user.name + ' lives!');
 

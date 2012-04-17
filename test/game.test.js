@@ -12,21 +12,4 @@
 $(document).ready(function(){
 	module("Game Logic");
 
-	test("Cell Death", function(){
-		ok(true, "This test is fine");
-		var value = "hello";
-		equal(value, "hello", "We expect value to be hello");
-	});
-
-	test("Cell Life", function(){
-		ok(true, "all pass");
-	});
-
-	module("Module B");
-
-	test("some other test", function(){
-		expect(2);
-		equal(true, false, "failing test");
-		equal(true, true, "passing test");
-	});
 });
