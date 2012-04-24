@@ -1,17 +1,29 @@
 <html>
     <head>
 			<title>Game of Life</title>
-			<script src="../lib/jquery-1.7.2.js"></script>
-			<script src="../lib/spine.js"></script>
+			<script src="../lib/jquery-1.7.2.js" type="text/javascript"></script>
+			<script src="../lib/backbone.js" type="text/javascript"></script>
 
 			<!-- Optional Spine extensions -->
-			<script src="../lib/local.js"></script>
-			<script src="../lib/route.js"></script>
+			<script src="../lib/local.js" type="text/javascript"></script>
+			<script src="../lib/route.js" type="text/javascript"></script>
 
-			<script src="../app/game.js"></script>
-			<script src="../app/cell.js"></script>
+			<script src="../app/game.js" type="text/javascript"></script>
+			<script src="../app/cell.js" type="text/javascript"></script>
+
+			<script type="text/javascript">
+				function draw(){
+					var canvas = document.getElementById("conway");
+					var ctx = canvas.getContext("2d");
+					ctx.fillStyle="GREY";
+					ctx.fillRect(0,0,300,300);
+			  };
+			
+			</script>
+
     </head>
-    <body>
-        <p>Conway's game of life</p>
+    <body onLoad="draw();">
+			<p>Conway's game of life</p>
+			<canvas id="conway" width="300" height="300"></canvas>
     </body>
 </html>

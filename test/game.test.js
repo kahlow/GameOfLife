@@ -11,5 +11,10 @@
 
 $(document).ready(function(){
 	module("Game Logic");
+	
+	test("Board Creation", function(){
+		ok(true, "The board is created");
+
+	});
 
 });
