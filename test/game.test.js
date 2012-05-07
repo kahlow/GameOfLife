@@ -13,8 +13,23 @@ $(document).ready(function(){
 	module("Game Logic");
 	
 	test("Board Creation", function(){
-		ok(true, "The board is created");
+        var gameBoard = new Game();
+        var board = gameBoard.CreateBoard(5,5,2);
+	    equal(5, board.length, "We expect board width to be 5");
+        for (var i = 0; i < 5; i++){i
+            equal(5, board[i].length, "We expect boards height to be 5");
+        }
+        
+        var alive = 0;
 
-	});
+        for (var i = 0; i < 5; i++){
+            for (var j = 0; j < 5; j++){
+                if (board[i][j].Status == "Alive")
+                    alive++;
+            }
+        }
+
+        equal(2, alive, "We expect two cells to be alive");
+    });
 
 });
