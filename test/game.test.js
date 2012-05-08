@@ -14,7 +14,7 @@ $(document).ready(function(){
 	
 	test("Board Creation", function(){
         var gameBoard = new Game();
-        var board = gameBoard.CreateBoard(5,5,2);
+        var board = gameBoard.createBoard(5,5,2);
 	    equal(5, board.length, "We expect board width to be 5");
         for (var i = 0; i < 5; i++){i
             equal(5, board[i].length, "We expect boards height to be 5");
@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         for (var i = 0; i < 5; i++){
             for (var j = 0; j < 5; j++){
-                if (board[i][j].Status == "Alive")
+                if (board[i][j].status == "Alive")
                     alive++;
             }
         }
@@ -32,4 +32,11 @@ $(document).ready(function(){
         equal(2, alive, "We expect two cells to be alive");
     });
 
+    test("Game Generation", function(){
+        var gameBoard = new Game();
+        var board = gameBoard.createBoard(5,5,25);
+        var nextBoard = gameBoard.nextGeneration(board);
+       
+        notEqual(board, nextBoard, "We expect the two boards to be different");
+    });
 });
