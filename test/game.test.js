@@ -1,8 +1,5 @@
 // Test file for game logic
 
-// get game yo
-//var game = require ('../src/app/game.js');
-
 // Tests:
 // 1. Any live cell with fewer than two neighbors dies
 // 2. Any live cell with two or three live neighbors lives on the the next generation
@@ -17,7 +14,7 @@ $(document).ready(function(){
         var board = gameBoard.createBoard(5,5,2);
 	    equal(5, board.length, "We expect board width to be 5");
         for (var i = 0; i < 5; i++){i
-            equal(5, board[i].length, "We expect boards height to be 5");
+            equal(5, board[i].length, "I expect boards height to be 5");
         }
         
         var alive = 0;
@@ -29,7 +26,7 @@ $(document).ready(function(){
             }
         }
 
-        equal(2, alive, "We expect two cells to be alive");
+        equal(2, alive, "I expect two cells to be alive");
     });
 
     test("Game Generation", function(){
@@ -37,6 +34,50 @@ $(document).ready(function(){
         var board = gameBoard.createBoard(5,5,25);
         var nextBoard = gameBoard.nextGeneration(board);
        
-        notEqual(board, nextBoard, "We expect the two boards to be different");
+        notEqual(board, nextBoard, "I expect the two boards to be different");
+    });
+
+    test("Rule 1: Fewer than two neighbors equals death", function(){
+        var game = new Game();
+        var board = game.createBoard(3,3,0);
+        board[1][1].alive();
+        var newBoard = game.nextGeneration(board);
+
+        equal(newBoard[1][1].status, "Dead", "I expect the cell to be dead");
+    });
+    
+    test("Rule 2: Two neighbors equals continued life", function(){
+        var game = new Game();
+        var board = game.createBoard(3,3,0);
+        board[1][1].alive();
+        board[1][2].alive();
+        board[0][2].alive();
+        var newBoard = game.nextGeneration(board);
+        
+        equal(newBoard[1][1].status, "Alive", "I expect the cell to be alive");
+    });
+    
+    test("Rule 3: More than three neighbors equals death", function(){
+        var game = new Game();
+        var board = game.createBoard(3,3,0);
+        board[1][1].alive();
+        board[1][2].alive();
+        board[0][2].alive();
+        board[2][1].alive();
+        var newBoard = game.nextGeneration(board);
+
+        equal(newBoard[1][1].status, "Dead", "I expect the cell to be dead");
+    });
+    
+    test("Rule 4: Any dead cell with three neighbors becomes a live cell", function(){
+        var game = new Game();
+        var board = game.createBoard(3,3,0);
+        board[1][1].dead();
+        board[1][2].alive();
+        board[2][2].alive();
+        board[2][1].alive();
+        var newBoard = game.nextGeneration(board);
+
+        equal(newBoard[1][1].status, "Alive", "I expect the cell to become alive");
     });
 });
