@@ -20,7 +20,10 @@ var Game = Backbone.Model.extend({
             x = Math.floor(Math.random() * width);
             y = Math.floor(Math.random() * height);
             //console.log(x + " " + y);
-    		board[x][y].alive();
+    		if (board[x][y].status == "Dead")
+                board[x][y].alive();
+            else
+                i--;
 		}
 
 		return board;
