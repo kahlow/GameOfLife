@@ -1,16 +1,16 @@
 var Cell = Backbone.Model.extend({
-	X: 0,
-	Y: 0,
-	Status: "Dead",
-	SetLocation: function(x,y){
-				  this.X = x;
-				  this.Y = y;  
+    x: 0,
+	y: 0,
+	status: "Dead",
+	setLocation: function(x,y){
+				  this.x = x;
+				  this.y = y;  
 			  },
-    Alive: function(){
-				this.Status = "Alive";
+    alive: function(){
+				this.status = "Alive";
 			},
-	Dead: function(){
-				this.Status = "Dead";
+	dead: function(){
+				this.status = "Dead";
 		  }	
 });
 
