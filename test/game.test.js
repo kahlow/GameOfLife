@@ -11,22 +11,21 @@ $(document).ready(function(){
 	
 	test("Board Creation", function(){
         var gameBoard = new Game();
-        var board = gameBoard.createBoard(5,5,2);
-	    equal(5, board.length, "We expect board width to be 5");
-        for (var i = 0; i < 5; i++){i
-            equal(5, board[i].length, "I expect boards height to be 5");
-        }
+        var board = gameBoard.createBoard(25,25,25);
+	    equal(25, board.length, "We expect board width to be 25");
+        equal(25, board[0].length, "I expect boards height to be 25");
         
         var alive = 0;
 
-        for (var i = 0; i < 5; i++){
-            for (var j = 0; j < 5; j++){
-                if (board[i][j].status == "Alive")
+        for (var i = 0; i < 25; i++){
+            for (var j = 0; j < 25; j++){
+                if (board[i][j].status == "Alive"){
                     alive++;
+                }
             }
         }
 
-        equal(2, alive, "I expect two cells to be alive");
+        equal(25, alive, "I expect 25 cells to be alive");
     });
 
     test("Game Generation", function(){
