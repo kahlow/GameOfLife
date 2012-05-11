@@ -54,6 +54,8 @@ var Game = Backbone.Model.extend({
         }
     },
     nextGeneration: function(){
+        this.setNeighbors();
+
         var kill = [],
             birth = [];
         _.each(this.gameBoard, function(row){
@@ -62,11 +64,16 @@ var Game = Backbone.Model.extend({
                     return neighbor.status == "Alive";
                 }));
 
-                if (numAlive < 2)
+                // rules 1 & 3
+                if (cell.status == "Alive" && (numAlive < 2 || numAlive > 3))
                     kill.push(cell);
-                else if (numAlive > 3)
-                    kill.push(cell);
-                else if (numAlive == 3 || numAlive == 2)
+
+                // rule 2
+                if (cell.status == "Alive" && (numAlive == 2 || numAlive == 3))
+                    birth.push(cell);
+
+                // rule 4
+                if (cell.status == "Dead" && numAlive == 3)
                     birth.push(cell);
             });
         });
@@ -84,8 +91,6 @@ var Game = Backbone.Model.extend({
                     }
                 });
             });
-        });
-
-        this.setNeighbors();
+        });        
     },
 });
