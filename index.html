@@ -53,7 +53,12 @@
 			  	};
 
 			  	$('#start').click(function(){
-			  		interval = setInterval(function(){game.nextGeneration(); draw();}, 200);	
+			  		var i = 0;
+			  		interval = setInterval(function(){
+			  			game.nextGeneration(); 
+			  			draw(); 
+			  			document.getElementById('gen').innerText = i++; 
+			  		}, 200);	
 			  	});
 
 			  	$('#stop').click(function(){
@@ -66,15 +71,16 @@
     </head>
     <body>
     	
-			<h1>Conway's Game of Life</h1>
-			<p>Width: <input type="text" id="width"></input></p>
-			<p>Height: <input type="text" id="height"></input></p>
-			<p># Cells: <input type="text" id="numCells"></input></p>
+		<h1>Conway's Game of Life</h1>
+		<p>Width: <input type="text" id="width"></input></p>
+		<p>Height: <input type="text" id="height"></input></p>
+		<p># Cells: <input type="text" id="numCells"></input></p>
 
-			<canvas id="conway"></canvas></br>
-			<button id="newgame">New Game</button>
-			<button id="start">Start</button>
-			<button id="stop">Stop</button>
+		<canvas id="conway"></canvas></br>
+		<button id="newgame">New Game</button>
+		<button id="start">Start</button>
+		<button id="stop">Stop</button>
+		</br><p>Generation: <span id="gen"></span></p>
 		
     </body>
 </html>
