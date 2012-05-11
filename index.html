@@ -8,6 +8,8 @@
 		<script src="src/app/game.js" type="text/javascript"></script>
 		<script src="src/app/cell.js" type="text/javascript"></script>
 
+		<link rel="stylesheet" href="src/css/style.css" type="text/css"></link>
+
 		<script type="text/javascript">
 			$(document).ready(function(){			
 				var game;
@@ -62,11 +64,12 @@
 		</script>
 
     </head>
-    <body align="center">
-			<h2>Conway's Game of Life</h2>
+    <body>
+    	
+			<h1>Conway's Game of Life</h1>
 			<p>Width: <input type="text" id="width"></input></p>
 			<p>Height: <input type="text" id="height"></input></p>
-			<p># cells: <input type="text" id="numCells"></input></p>
+			<p># Cells: <input type="text" id="numCells"></input></p>
 
 			<canvas id="conway"></canvas></br>
 			<button id="newgame">New Game</button>
