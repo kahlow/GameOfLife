@@ -1,21 +1,40 @@
 var Game = Backbone.Model.extend({
     width: 0,
     height: 0,
+    gameBoard: [],
 	createBoard: function(width, height, numCells){
         this.width = width;
         this.height = height;
-		var board = new Array(this.width);
+		this.gameBoard = new Array(this.width);
 
         // create 2d array
 		for (var w = 0; w < this.width; w++){
-		    board[w] = new Array(this.height); 
+            this.gameBoard[w] = new Array(this.height); 
 			for (var h = 0; h < this.height; h++){
 				var cell = new Cell();
 				cell.setLocation(w, h);
-				board[w][h] = cell;
+                cell.dead();
+				this.gameBoard[w][h] = cell;
 			}
 		}
 
+        // turn random cells on
+        var x, y;
+		for (var i = 0; i < numCells; i++){
+            x = Math.floor(Math.random() * this.width);
+            y = Math.floor(Math.random() * this.height);
+
+            // make sure they're not repeated
+            if (this.gameBoard[x][y].status == "Dead")
+                this.gameBoard[x][y].alive();            
+            else
+                i--;            
+		}
+
+        this.setNeighbors();
+		return this.gameBoard;
+	},
+    setNeighbors: function(){
         // set neighbors
         var neighbors = [];
         for (var w = 0; w < this.width; w++){
@@ -25,57 +44,48 @@ var Game = Backbone.Model.extend({
                     for (var j = -1; j <= 1; j++){
                         if (i != 0 || j != 0){// not your own neighbor
                             if ((w + i >= 0 && h + j >= 0) && (w + i < this.width && h + j < this.height)){
-                                neighbors.push(board[w + i][h + j]);                        
+                                neighbors.push(this.gameBoard[w + i][h + j]);                        
                             }
                         }
                     }
                 }
-                board[w][h].setNeighbors(neighbors);
+                this.gameBoard[w][h].setNeighbors(neighbors);
             }
         }
+    },
+    nextGeneration: function(){
+        var kill = [],
+            birth = [];
+        _.each(this.gameBoard, function(row){
+            _.each(row, function(cell){
+                var numAlive = _.size(_.filter(cell.neighbors, function(neighbor){
+                    return neighbor.status == "Alive";
+                }));
 
-        // turn random cells on
-        var x, y;
-		for (var i = 0; i < numCells; i++){
-            x = Math.floor(Math.random() * this.width);
-            y = Math.floor(Math.random() * this.height);
-            //console.log("random location: x->" + x + " y->" + y);
-            // make sure they're not repeated
-    		if (board[x][y].status == "Dead")
-                board[x][y].alive();
-            else
-                i--;
-		}
+                if (numAlive < 2)
+                    kill.push(cell);
+                else if (numAlive > 3)
+                    kill.push(cell);
+                else if (numAlive == 3 || numAlive == 2)
+                    birth.push(cell);
+            });
+        });
 
-		return board;
-	},
-    nextGeneration: function(board){
-        var g = new Game();
-        this.width = _.size(board);
-        this.height = _.size(board[0]);
-        var newBoard = g.createBoard(this.width, this.height, 0);
-        _.extend(newBoard, board);
-
-        var alive = 0;
-        for (var i = 0; i < this.width; i++){
-            for (var j = 0; j < this.height; j++){
-                alive = 0;
-                for (var c = 0; c < board[i][j].neighbors.length; c++){
-                //_.each(board[i][j].neighborArray, function(cell){
-                    if (board[i][j].neighbors[c].status == "Alive"){
-                        alive++;
+        _.each(this.gameBoard, function(row){
+            _.each(row, function(cell){
+                _.each(kill, function(toDie){
+                    if (cell == toDie){
+                        cell.dead();
                     }
-                }
+                });
+                _.each(birth, function(toLive){
+                    if (cell == toLive){
+                        cell.alive();
+                    }
+                });
+            });
+        });
 
-                if (alive <= 2)
-                    newBoard[i][j].dead();
-                else if (alive > 3)
-                    newBoard[i][j].dead();
-                else if (alive == 3)
-                    newBoard[i][j].alive();
-            }
-        }
-
-        return newBoard;
+        this.setNeighbors();
     },
 });
