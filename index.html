@@ -17,6 +17,7 @@
 				var height;
 				var numCells;
 				var interval;
+				var generation;
 
 				$('#newgame').click(function(){
 			  		game = new Game();
@@ -30,6 +31,8 @@
 					}else{
 						alert("ಠ_ಠ");
 					}
+
+					generation = 0;
 			  	});
 
 			  	function draw(){
@@ -53,11 +56,11 @@
 			  	};
 
 			  	$('#start').click(function(){
-			  		var i = 0;
+			  		
 			  		interval = setInterval(function(){
 			  			game.nextGeneration(); 
 			  			draw(); 
-			  			document.getElementById('gen').innerText = i++; 
+			  			document.getElementById('gen').innerText = generation++; 
 			  		}, 200);	
 			  	});
 
