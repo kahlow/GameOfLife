@@ -1,6 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
 		<title>Game of Life</title>
+		<link rel="stylesheet" href="src/css/bootstrap.min.css" type="text/css"></link>
+		<link rel="stylesheet" href="src/css/style.css" type="text/css"></link>
+    </head>
+    <body>
+		<form class="form-horizontal">
+			<legend>Conway's Game of Life</legend>
+			<div class="control-group">
+				<label class="control-label" for="width">Width</label>
+				<div class="controls">
+					<input type="text" id="width" placeholder="Width">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="height">Height</label>
+				<div class="controls">
+					<input type="text" id="height" placeholder="Height">
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="height"># Cells</label>
+				<div class="controls">
+					<input type="text" id="numCells" placeholder="Number of Cells">
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button class="btn btn-primary" type="button" id="newgame">Create</button>
+					<button class="btn btn-primary" type="button" id="start">Start</button>
+					<button class="btn btn-primary" type="button" id="stop">Stop</button>
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<canvas id="conway"></canvas>
+				</div>
+			</div>
+		</form>
+		<p>Generation: <span id="gen"></span></p>
 		<script src="src/lib/underscore.js" type="text/javascript"></script>
 		<script src="src/lib/backbone.js" type="text/javascript"></script>
 		<script src="src/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -9,22 +48,5 @@
 		<script src="src/app/game.js" type="text/javascript"></script>
 		<script src="src/app/cell.js" type="text/javascript"></script>
 		<script src="src/app/play.js" type="text/javascript"></script>
-
-		<link rel="stylesheet" href="src/css/style.css" type="text/css"></link>
-		<link rel="stylesheet" href="src/css/style.css" type="text/css"></link>
-    </head>
-    <body>
-    	
-		<h1>Conway's Game of Life</h1>
-		<p>Width: <input type="text" id="width"></input></p>
-		<p>Height: <input type="text" id="height"></input></p>
-		<p># Cells: <input type="text" id="numCells"></input></p>
-
-		<canvas id="conway"></canvas></br>
-		<button id="newgame">New Game</button>
-		<button id="start">Start</button>
-		<button id="stop">Stop</button>
-		</br><p>Generation: <span id="gen"></span></p>
-		
     </body>
 </html>
