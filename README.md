@@ -1,7 +1,7 @@
 Conway's Game of Life
 =====================
 
-This is my implementation of Conway's Game of Life using Backbone.js, Underscore.js, JQuery and QUnit.
+This is my implementation of Conway's Game of Life using Backbone.js, Underscore.js, Twitter Bootstrap, JQuery and QUnit.
 
 About
 -----
