@@ -6,7 +6,7 @@ $(document).ready(function () {
 		interval,
 		generation;
 
-	$('#newgame').click(function () {
+	$('#create').click(function () {
 		game = new Game();
 		width = document.getElementById("width").value;
 		height = document.getElementById("height").value;
@@ -15,6 +15,9 @@ $(document).ready(function () {
 		if (width > 0  && height > 0) {
 			game.createBoard(width / 10, height / 10, numCells);
 			draw();
+			$('#start').removeAttr("disabled");
+			$('#create').attr("disabled", "disabled");
+
 		} else {
 			alert("ಠ_ಠ");
 		}
@@ -43,7 +46,9 @@ $(document).ready(function () {
 	}
 
 	$('#start').click(function () {
-
+		$('#stop').removeAttr("disabled");
+		$('#start').attr("disabled", "disabled");
+		$('#create').attr("disabled", "disabled");
 		interval = setInterval(function () {
 			game.nextGeneration(); 
 			draw(); 
@@ -52,6 +57,9 @@ $(document).ready(function () {
 	});
 
 	$('#stop').click(function () {
+		$('#start').removeAttr("disabled");
+		$('#stop').attr("disabled", "disabled");
+		$('#create').removeAttr("disabled");
 		clearInterval(interval);
 	});
 });

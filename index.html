@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+	<head>
 		<title>Game of Life</title>
 		<link rel="stylesheet" href="src/css/bootstrap.min.css" type="text/css"></link>
 		<link rel="stylesheet" href="src/css/style.css" type="text/css"></link>
-    </head>
-    <body>
-    	<div class="container-fluid">
-    		<div class="title">Conway's Game of Life</div>
+	</head>
+	<body>
+	<div class="container-fluid">
+			<div class="title">Conway's Game of Life</div>
 			<div class="row-fluid">
-			    <div class="span1">
+				<div class="span1">
 					<form>
 						<input type="text" class="input-small" id="width" placeholder="Width">
 						<input type="text" class="input-small" id="height" placeholder="Height">
 						<input type="text" class="input-small" id="cells" placeholder="Cell count">
-						<button class="btn" type="button" id="newgame">Create</button>
+						<button class="btn" type="button" id="create">Create</button>
 					</form>
-			    </div>
-			    <div class="span10">
+				</div>
+				<div class="span10">
 					<canvas id="conway"></canvas>
-					<button class="btn" type="button" id="start">Start</button>
-					<button class="btn" type="button" id="stop">Stop</button>
+					</br>
+					<button class="btn" type="button" id="start" disabled>Start</button>
+					<button class="btn" type="button" id="stop" disabled>Stop</button>
 			    </div>
 			</div>
-    	</div>
+		</div>
 		<script src="src/lib/underscore.js" type="text/javascript"></script>
 		<script src="src/lib/backbone.js" type="text/javascript"></script>
 		<script src="src/lib/jquery-1.8.2.min.js" type="text/javascript"></script>
@@ -31,5 +32,5 @@
 		<script src="src/app/game.js" type="text/javascript"></script>
 		<script src="src/app/cell.js" type="text/javascript"></script>
 		<script src="src/app/play.js" type="text/javascript"></script>
-    </body>
+	</body>
 </html>
