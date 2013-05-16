@@ -1,4 +1,11 @@
-body{
-
+div.title {
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 31px;
+    line-height: 40px;
+    color: #333;
+    border: 0;
+    border-bottom: 1px solid #E5E5E5;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
 }
 

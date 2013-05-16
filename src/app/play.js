@@ -10,7 +10,7 @@ $(document).ready(function () {
 		game = new Game();
 		width = document.getElementById("width").value;
 		height = document.getElementById("height").value;
-		numCells = document.getElementById("numCells").value;
+		numCells = document.getElementById("cells").value;
 
 		if (width > 0  && height > 0) {
 			game.createBoard(width / 10, height / 10, numCells);
